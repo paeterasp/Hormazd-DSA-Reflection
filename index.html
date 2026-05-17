@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hormazd Vevaina | Competition-Grade Robotics Portfolio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hormazd Vevaina | DSA Robotics • STEM • Science Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --blue:#0b3d91;
@@ -14,6 +13,8 @@
   --bg:#f4f7fb;
   --text:#1b1f2a;
 }
+
+*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -24,94 +25,160 @@ body{
   scroll-behavior:smooth;
 }
 
-/* HERO */
+/* HEADER */
 header{
   background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:100px 20px;
+  color:#fff;
+  padding:36px 20px 42px;
   text-align:center;
   position:relative;
-  overflow:hidden;
+  overflow:visible;
 }
 
-#particles{
+header h1{
+  font-size:48px;
+  margin:0 0 10px;
+  position:relative;
+  z-index:2;
+}
+
+header p{
+  margin:4px 0;
+  position:relative;
+  z-index:2;
+  opacity:.96;
+}
+
+header .tagline{
+  font-size:18px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+header .sub{
+  font-size:16px;
+}
+
+/* SIDE GEARS */
+.gears-side{
   position:absolute;
-  inset:0;
-  z-index:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:240px;
+  height:240px;
+  opacity:0.18;
   pointer-events:none;
+  overflow:visible;
 }
 
-header h1, header p{position:relative; z-index:1;}
+.gear-left{ left:-40px; }
+.gear-right{ right:-40px; }
 
-header::before{
-  content:"";
-  position:absolute;
-  inset:-50%;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 40%),
-    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.1), transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.08), transparent 60%);
-  animation:floatGlow 12s ease-in-out infinite alternate;
-}
-
-header::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg, rgba(255,255,255,0.05), transparent 60%);
-  animation:shine 6s linear infinite;
-}
-
-@keyframes floatGlow{
-  0%{transform:scale(1) translateY(0px)}
-  100%{transform:scale(1.2) translateY(-20px)}
-}
-
-@keyframes shine{
-  0%{transform:translateX(-100%)}
-  100%{transform:translateX(100%)}
-}
-
-@keyframes spin{
+/* ROTATION */
+@keyframes rotate-cw{
   from{transform:rotate(0deg)}
   to{transform:rotate(360deg)}
 }
 
-header h1{
-  font-size:56px;
-  margin:0;
-  position:relative;
+@keyframes rotate-ccw{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(-360deg)}
 }
 
-header p{position:relative;opacity:.95;font-size:18px}
+.big-gear-left,
+.big-gear-right{
+  animation:rotate-cw 22s linear infinite;
+}
 
+.small-gear-left,
+.small-gear-right{
+  animation:
+    slide-in 1.8s ease-out forwards,
+    rotate-ccw 22s linear infinite;
+}
+
+/* SLIDE MOTION */
+@keyframes slide-in{
+  from{transform:translateX(60px)}
+  to{transform:translateX(0px)}
+}
+
+/* STATIC ROBOTS (Option B — Medium Crop) */
+.robot-side {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 260px;          /* medium crop size */
+  height: auto;
+  opacity: 0.22;         /* subtle, professional */
+  pointer-events: none;
+  overflow: hidden;      /* clean crop */
+}
+
+.robot-side img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;     /* medium crop effect */
+  border-radius: 12px;   /* soft, premium look */
+}
+
+/* LEFT ROBOT POSITION */
+.robot-left {
+  left: -40px;           /* same offset as gears */
+}
+
+/* RIGHT ROBOT POSITION */
+.robot-right {
+  right: -40px;
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width: 700px) {
+  .robot-side {
+    width: 160px;
+    opacity: 0.18;
+  }
+  .robot-left { left: -20px; }
+  .robot-right { right: -20px; }
+}
+
+
+/* NAV */
 nav{
   position:sticky;
   top:0;
   z-index:999;
   background:var(--blue2);
-  padding:12px;
+  padding:10px 8px;
   text-align:center;
 }
 
 nav a{
-  color:white;
-  margin:0 14px;
+  color:#fff;
+  margin:0 10px;
   text-decoration:none;
   font-weight:600;
-  font-size:14px;
+  font-size:13px;
+  padding:6px 8px;
+  border-radius:999px;
+  transition:.2s;
 }
 
+nav a:hover{
+  background:rgba(255,255,255,0.12);
+}
+
+/* SECTIONS */
 section{
   max-width:1050px;
-  margin:40px auto;
-  background:white;
-  padding:40px;
+  margin:32px auto;
+  background:#fff;
+  padding:32px 28px;
   border-radius:18px;
-  box-shadow:0 12px 35px rgba(0,0,0,.08);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
   opacity:0;
-  transform:translateY(25px);
-  transition:all .8s ease;
+  transform:translateY(24px);
+  transition:all .8s cubic-bezier(0.25,0.1,0.25,1);
 }
 
 section.visible{
@@ -121,115 +188,117 @@ section.visible{
 
 h2{
   color:var(--blue);
-  font-size:30px;
-  margin-top:0;
+  font-size:28px;
+  margin:0 0 14px;
 }
 
-h3{color:#1a2b5c}
+h3{
+  color:#1a2b5c;
+  margin-top:18px;
+}
 
-.quote{
-  border-left:5px solid var(--blue);
-  background:#eef3ff;
-  padding:16px;
-  border-radius:10px;
-  font-weight:600;
-  margin:18px 0;
+p{margin:8px 0}
+ul{padding-left:20px;margin:8px 0}
+
+/* SUBTITLE */
+.subtitle{
+  margin-top:-6px;
+  margin-bottom:18px;
+  font-size:14px;
+  color:#555;
+  text-align:left;
+}
+
+/* GRID / CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
 }
 
 .card{
-  background:#f0f4ff;
-  padding:16px;
+  background:#eef3ff;
+  padding:16px 14px;
   border-radius:14px;
-  margin:12px 0;
-  transition:.3s;
+  transition:.25s;
 }
 
-.card:hover{transform:translateY(-4px)}
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
 
-.badge{
+/* ⭐ QUIET SCRATCH CARD HOVER (subtle) */
+.card.scratch-card{
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.card.scratch-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.10);
+}
+
+/* ⭐ SKILLS LEARNED BADGES (subtle version) */
+.skill-badge{
   display:inline-block;
-  background:var(--blue);
-  color:white;
-  padding:8px 12px;
-  border-radius:20px;
-  font-size:12px;
-  margin:5px;
+  background:#dce6ff;
+  color:#0b3d91;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:11px;
+  margin:4px 6px 0 0;
+  font-weight:600;
+  border:1px solid #bcd0ff;
 }
 
-.timeline{
-  border-left:3px solid var(--blue);
-  padding-left:22px;
+/* TIMELINE */
+.timeline-icon{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-top:20px;
 }
 
-.timeline div{
-  margin:14px 0;
-  position:relative;
-}
-
-.timeline div::before{
-  content:"";
-  width:10px;
-  height:10px;
-  background:var(--blue);
-  position:absolute;
-  left:-26px;
-  top:6px;
-  border-radius:50%;
-}
-
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
-}
-
-.gallery img{
-  width:100%;
-  border-radius:14px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.gallery img:hover{transform:scale(1.06)}
-
-.placeholder{
-  height:160px;
-  background:#e6eaf2;
+.t-item{
   display:flex;
   align-items:center;
-  justify-content:center;
+  gap:14px;
+  background:#eef3ff;
+  padding:14px 16px;
   border-radius:14px;
-  color:#666;
-  font-size:13px;
+  box-shadow:0 6px 16px rgba(0,0,0,.08);
+  transition:.25s;
 }
 
-.skill{
-  margin:14px 0;
+.t-item:hover{
+  transform:translateY(-3px);
 }
 
-.bar{
-  height:10px;
-  background:#e2e6ef;
-  border-radius:6px;
-  overflow:hidden;
+.t-icon{
+  font-size:28px;
+  width:40px;
+  text-align:center;
 }
 
-.bar span{
-  display:block;
-  height:100%;
-  background:var(--blue);
-}
-
+/* BUTTONS */
 .btn{
   display:inline-block;
-  padding:10px 18px;
+  padding:9px 16px;
   background:var(--blue);
-  color:white;
+  color:#fff;
   border-radius:10px;
   text-decoration:none;
-  margin-top:10px;
+  font-size:13px;
+  margin:6px 6px 6px 0;
 }
 
+.btn.outline{
+  background:#fff;
+  color:var(--blue);
+  border:1px solid var(--blue);
+}
+
+/* LIGHTBOX */
 .lightbox{
   position:fixed;
   inset:0;
@@ -246,277 +315,416 @@ h3{color:#1a2b5c}
   border-radius:12px;
 }
 
-.video{
-  width:100%;
-  aspect-ratio:16/9;
-  border-radius:14px;
-  overflow:hidden;
-}
-
+/* FOOTER */
 footer{
   background:var(--blue);
-  color:white;
+  color:#fff;
   text-align:center;
-  padding:24px;
+  padding:22px 10px;
   margin-top:40px;
+  font-size:13px;
 }
 
-@media(max-width:600px){
+/* MOBILE */
+@media(max-width:700px){
   header h1{font-size:36px}
+  header{padding:30px 16px 36px}
+  section{margin:24px 12px;padding:24px 18px}
+  nav a{font-size:12px;margin:0 6px}
 }
+
+/* ICON ANIMATIONS */
+@keyframes bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.1);opacity:0.85}
+  100%{transform:scale(1);opacity:1}
+}
+
+
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-<h1>Hormazd Vevaina</h1>
-<p>Robotics • Engineering • Innovation</p>
-<p><strong>From curiosity to competition-level robotics engineering</strong></p>
-  <canvas id="particles"></canvas>
+<!-- LEFT ROBOT -->
+<div class="robot-side robot-left">
+  <img src="L.png" alt="Left Robot">
+</div>
+
+<!-- RIGHT ROBOT -->
+<div class="robot-side robot-right">
+  <img src="R.png" alt="Right Robot">
+</div>
+
+
+  <h1>Hormazd Vevaina</h1>
+  <p class="tagline">Robotics • STEM • Science</p>
+  <p class="sub"><strong>From curiosity to competition-grade robotics and engineering</strong></p>
+  <p class="sub">DSA Portfolio for Secondary School Admission (Singapore)</p>
 </header>
 
+<!-- NAV -->
 <nav>
-<a href="#journey">Journey</a>
-<a href="#timeline">Timeline</a>
-<a href="#projects">FLL Project</a>
-<a href="#certs">Certificates</a>
-<a href="#skills">Skills</a>
-<a href="#video">Scratch Projects</a>
-<a href="#why">Why Robotics</a>
+  <a href="#profile">Profile</a>
+  <a href="#achievements">Achievements</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#journey">Journey</a>
+  <a href="#skills">Technical Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#portfolio">Certificates</a>
+  <a href="#value">My Contribution</a>
 </nav>
 
-<section id="journey">
-<h2>My Robotics Journey</h2>
-
-<h3>A Journey That Began with Curiosity</h3>
-<p>Some people discover their passion through sports, music, or books. For me, it began with a simple box of LEGO pieces.</p>
-<p>At first, they were just small plastic bricks. But when those pieces came together to form something real — something structured and purposeful — it changed the way I thought. I began to realise that building was not just about following instructions. It was about understanding systems, solving problems, and creating something meaningful from individual parts.</p>
-<p>That moment sparked a curiosity that has grown into a deep passion for robotics, programming, and engineering.</p>
-<p>Today, robotics represents more than just an interest. It represents how I think — logically, creatively, and persistently — and how I approach challenges both independently and in teams.</p>
-
-<h3>The First Spark: My First LEGO Set</h3>
-<p>My journey began in New Zealand when I received my first LEGO fire truck set.</p>
-<p>Opening the box, I was faced with hundreds of pieces and a detailed instruction manual. At that time, it felt overwhelming. I struggled with the early steps and often made mistakes.</p>
-<p>However, with patience and guidance from my parents, I worked through the instructions step by step.</p>
-<p>When I finally completed the fire truck, I felt a strong sense of accomplishment. I had transformed something complex into something complete through persistence.</p>
-<p><strong>This experience taught me an important lesson that continues to guide me today:</strong> complex challenges can be solved when broken down into smaller, manageable steps.</p>
-<p>As my confidence grew, I progressed to building more advanced models such as the Monkie Kid Cloud Jet and the LEGO Technic Formula E Porsche. These introduced me to mechanical systems like gears, motion, and structure — laying the foundation for my understanding of engineering.</p>
-
-<h3>Exploring Mechanical Design and Creativity</h3>
-<p>As I built more sets, I became curious about how they worked. I started exploring beyond instructions and discovered mechanical LEGO creations online that used gears and moving systems.</p>
-<p>Inspired by these, I began experimenting with gears in my own builds. I explored how different gear combinations affected speed and power, and I tried designing simple machines.</p>
-<p>This marked a shift from simply building models to thinking like a designer and problem solver.</p>
-
-<h3>Developing My Programming Foundation (Primary 4 – 2024)</h3>
-<p>In Primary 4, I started learning Scratch, a block-based programming platform.</p>
-<p>I began with simple projects like Hangman, but gradually moved on to more complex ones, including a LEGO-themed platformer game. Through these projects, I learned key programming concepts such as loops, conditions, and variables.</p>
-<p>To further strengthen my skills, I completed a Scratch Enrichment Program from Coders Passion Pvt Ltd in March 2024.</p>
-<ul>
-<li>Strengthened my logical thinking</li>
-<li>Improved my coding structure</li>
-<li>Gained confidence in building more complex programs</li>
-</ul>
-<p>During this time, I started connecting programming with my earlier interest in LEGO — which naturally led me toward robotics.</p>
-
-<h3>Early Exposure to Robotics (January 2024 – LEGOLAND)</h3>
-<p>In January 2024, I visited LEGOLAND and interacted with LEGO EV3 robots. This was a turning point where I saw how machines could move, sense, and execute programmed instructions. It helped me realise that robotics combines building, programming, and problem-solving — all areas I enjoy deeply.</p>
-
-<h3>A Defining Leadership Experience: National Micro:bit Hackathon 2025</h3>
-<p>In March 2025 (Primary 5), I participated in the National Micro:bit Hackathon through the ALP programme at Bendemeer Primary School.</p>
-<p>I led a team of five students to design and build a futuristic solar-powered smart house using micro:bit technology.</p>
-<ul>
-<li>Designed a sustainable smart model</li>
-<li>Programmed micro:bit integration</li>
-<li>Combined creativity, engineering, and coding</li>
-</ul>
-<p>As team leader, I coordinated ideas, ensured contribution from all members, and guided the project to completion.</p>
-<p>We were awarded the <strong>Best Design Award</strong>, which became a major turning point and motivated me to pursue robotics further.</p>
-
-<h3>Beginning Structured Robotics Training (2025)</h3>
-<p>I joined Nullspace Robotics and completed Foundation, Basic, Intermediate, and Advanced certifications within five months.</p>
-
-<h4>Foundation Certification</h4>
-<p>Learned core robotics components, motors, sensors, and how code translates to movement.</p>
-
-<h4>Basic Certification</h4>
-<p>Worked with sensors, conditional logic, and debugging.</p>
-
-<h4>Intermediate Certification</h4>
-<p>Focused on accuracy, efficiency, and multi-sensor integration.</p>
-
-<h4>Advanced Certification</h4>
-<p>Applied complex logic, precise navigation, and optimisation through iterative testing.</p>
-
-<p>This structured training prepared me for competitive robotics environments.</p>
-
-<h3>FIRST LEGO League (FLL)</h3>
-<p>Following my experience at the Micro:bit Hackathon, I joined the FLL team at Nullspace to apply my skills in a competitive environment.</p>
-<p>Over five months, we prepared across robot building, game missions, innovation project, and presentation.</p>
-<p>The 2025–2026 theme, <strong>UNEARTHED</strong>, focused on archaeology and innovation. We designed robots to uncover artifacts and explored how technology improves preservation.</p>
-<p>As a senior team member, I led research, built the demo, developed presentation slides, and coded key robot functions using Pybricks.</p>
-<p>I also created a 3D simulation project in order for the judges to better understand our proposed solution for the overarching question for FLL 2026 which was to 'Identifying problems faced by archeologists and proposing a solution for it': <a href="https://paeterasp.github.io/FLL/index.html" target="_blank">View Simulation</a></p>
-<p>We explored multiple designs and refined our approach to ensure efficiency and completion within time constraints.</p>
-<p>During competition, unexpected challenges such as interference affected our performance, teaching me resilience, adaptability, and preparation.</p>
-
-<h3>Key Lessons Learned</h3>
-<ul>
-<li>Persistence through challenges</li>
-<li>Leadership through initiative</li>
-<li>Effective teamwork</li>
-<li>Continuous improvement through reflection</li>
-</ul>
-
-<h3>Looking Forward</h3>
-<p>From building my first LEGO model to competing in robotics competitions, my journey reflects continuous growth. I aim to further develop my skills and contribute meaningfully to advanced robotics programmes.</p>
+<!-- PROFILE -->
+<section id="profile">
+  <h2>Executive Profile</h2>
+  <p class="subtitle">A concise overview of my robotics, STEM and applied science journey.</p>
+  <p>I am a Primary 6 student with a strong passion for robotics, engineering and applied science. Through structured training, national competitions and self-driven projects, I have developed resilience, teamwork, leadership and a disciplined approach to problem-solving.</p>
+  <p>Robotics reflects how I think—logical, creative and persistent. I am ready to contribute actively to a secondary school that values innovation, discipline and excellence.</p>
 </section>
 
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <h2>Key Achievements</h2>
+  <p class="subtitle">A snapshot of my key achievements across robotics, coding and STEM.</p>
+  <div class="grid">
+    <div class="card">
+      <strong>Best Design Award</strong><br>
+      National Micro:bit Hackathon 2025<br>
+      <span class="badge">Team Leader</span>
+      <span class="badge">Sustainability</span>
+    </div>
+    <div class="card">
+      <strong>3 Robotics Certifications</strong><br>
+      Beginner to Advanced completed within 5 months<br>
+      <span class="badge">Rapid Progression</span>
+      <span class="badge">Competition-Ready</span>
+    </div>
+    <div class="card">
+      <strong>FIRST LEGO League (UNEARTHED)</strong><br>
+      Senior team member: coding, research, presentation<br>
+      <span class="badge">Innovation Project</span>
+      <span class="badge">Strategy & Missions</span>
+    </div>
+    <div class="card">
+      <strong>Scratch Programming</strong><br>
+      Built multiple games using logic, loops and variables<br>
+      <span class="badge">Computational Thinking</span>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
 <section id="timeline">
-<h2>Journey Timeline</h2>
-<div class="timeline">
-<div>March 2017 - LEGO Fire Truck – First Engineering Exposure</div>
-<div>Jan 2024 – LEGOLAND EV3 Discovery</div>
-<div>Mar 2024 – Scratch Certification</div>
-<div>Jan 2025 – Beginner Robotics Training</div>
-<div>April 2025 – Intermediate Robotics Training</div>
-<div>June 2025 – Advanced Robotics Training</div>
-<div>Sept 2025 – National Micro:bit Hackathon Winner</div>
-<div>March 2026 – FIRST LEGO League Competition</div>
-</div>
+  <h2>Journey Timeline</h2>
+  <p class="subtitle">Key milestones that shaped my development in robotics, coding and engineering.</p>
+
+  <div class="timeline-icon">
+    <div class="t-item">
+      <div class="t-icon">💻</div>
+      <div>
+        <strong>2024</strong><br>
+        Scratch programming foundation
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-icon">🤖</div>
+      <div>
+        <strong>2024</strong><br>
+        First robotics exposure (EV3)
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-icon">⚙️</div>
+      <div>
+        <strong>2025</strong><br>
+        Robotics certifications (Beginner → Advanced)
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-icon">🏆</div>
+      <div>
+        <strong>2025</strong><br>
+        National Micro:bit Hackathon — Best Design Award
+      </div>
+    </div>
+
+    <div class="t-item">
+      <div class="t-icon">🌍</div>
+      <div>
+        <strong>2026</strong><br>
+        FIRST LEGO League (UNEARTHED)
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="projects">
-<h2>Engineering Projects</h2>
-<div class="card">
-<h3>FLL Simulation System</h3>
-<p>Interactive robotics strategy 3D simulation supporting team research and presentation. This allowed the judges to better understand our proposed solution for the overarching question for FLL 2026 which was 'Identifying problems faced by archeologists and proposing a solution for it'</p>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="_blank">View Project</a>
-</div>
+<!-- JOURNEY -->
+<section id="journey">
+  <h2>My Engineering & Robotics Journey</h2>
+  <p class="subtitle">A concise, engineering-focused overview of how I developed as a robotics and STEM learner.</p>
+
+  <p>My interest in engineering began with a simple curiosity about how things work. This curiosity grew into a focused passion for robotics when I started programming and building systems that combined mechanical design with code.</p>
+
+  <p>Learning Scratch in Primary 4 gave me a strong foundation in computational thinking. Concepts like loops, conditions and variables helped me understand how logic drives real-world systems.</p>
+
+  <p>My first hands-on robotics experience came through EV3 robots, where I saw how sensors, motors and code interact. This sparked my commitment to pursue robotics seriously.</p>
+
+  <p>In Primary 5, I led my school’s National Micro:bit Hackathon team. We designed a sustainable smart home prototype and won the <strong>Best Design Award</strong>. This experience strengthened my leadership, teamwork and engineering communication.</p>
+
+  <p>To deepen my technical skills, I completed three levels of structured robotics training—from Beginner to Advanced—within five months. This equipped me with strong fundamentals in sensors, navigation, optimisation and iterative testing.</p>
+
+  <p>As a senior member of my FIRST LEGO League (UNEARTHED) team, I contributed to robot coding (Pybricks), mission strategy, research and presentation. I also built a 3D simulation to help judges visualise our innovation project.</p>
+
+  <p>These experiences shaped my engineering mindset: break problems into smaller parts, test systematically, improve through iteration and stay calm under pressure. I am committed to growing further in a secondary school environment that values innovation, discipline and service.</p>
 </section>
 
-<section id="certs">
-<h2>Certificates & Achievements</h2>
-<div class="gallery">
-<a class="btn" href="FLLCertificate.pdf" target="blank">First Lego League (FLL) - Participation Certificate</a>
-<a class="btn" href="FLLLetter.pdf" target="blank">First Lego League (FLL) - Letter from NullSpace</a>
-<a class="btn" href="Advanced.pdf" target="blank">CSARC: Lego Robotics Advanced Certification</a>
-<a class="btn" href="Hackathon.pdf" target="blank">National Micro Bit Hackathon 2025 - Best Design Award</a>
-<a class="btn" href="Intermediate.pdf" target="blank">CSARC: Lego Robotics Intermediate Certification</a>
-<a class="btn" href="Beginner.pdf" target="blank">CSARC: Lego Robotics Beginner Certification</a>
-<a class="btn" href="Scratch.pdf" target="blank">Scratch Enrichment Programme Certification</a>
-</div>
-</section>
-
+<!-- SKILLS -->
 <section id="skills">
-<h2>Technical Skills</h2>
-<div class="grid">
-<div class="card"><strong>Robotics Platforms</strong><br>LEGO Spike Prime, EV3 concepts, Micro:bit</div>
-<div class="card"><strong>Programming</strong><br>Scratch, Pybricks (Python-based), logic design</div>
-<div class="card"><strong>Engineering</strong><br>Gears, motion systems, structural builds, sensors</div>
-<div class="card"><strong>Competition Skills</strong><br>Testing, debugging, optimisation, time strategy</div>
-<div class="card"><strong>Leadership</strong><br>Team coordination, presentations, collaboration</div>
+  <h2>Technical & Personal Skills</h2>
+  <p class="subtitle">A blend of technical, engineering and leadership skills developed through structured training and competitions.</p>
+  <div class="grid">
+    <div class="card">
+      <strong>Robotics Platforms</strong><br>
+      LEGO Spike Prime, EV3 concepts, Micro:bit
+      <div class="badge">Hardware Integration</div>
+    </div>
+    <div class="card">
+      <strong>Programming</strong><br>
+      Scratch, Pybricks (Python-based), logic design
+      <div class="badge">Algorithms</div>
+      <div class="badge">Debugging</div>
+    </div>
+    <div class="card">
+      <strong>Engineering & Design</strong><br>
+      Gears, motion systems, structural builds, sensors
+      <div class="badge">Mechanical Thinking</div>
+    </div>
+    <div class="card">
+      <strong>Competition Skills</strong><br>
+      Testing, optimisation, time strategy, resilience under pressure
+      <div class="badge">Iteration</div>
+    </div>
+    <div class="card">
+      <strong>Leadership & Collaboration</strong><br>
+      Team coordination, presentations, peer support
+      <div class="badge">Team Player</div>
+      <div class="badge">Student Leader</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>Projects & Competition Experience</h2>
+  <p class="subtitle">Selected projects demonstrating my ability to apply robotics, coding and STEM concepts.</p>
+
+  <h3>National Micro:bit Hackathon – Solar-Powered Smart House</h3>
+  <p>Led a team of five to design a futuristic solar-powered smart house integrating micro:bit technology. The project combined sustainability, engineering and coding.</p>
+  <ul>
+    <li>Designed the overall concept and layout</li>
+    <li>Programmed interactive features using micro:bit</li>
+    <li>Coordinated team roles and presentation</li>
+  </ul>
+  <p><strong>Outcome:</strong> Awarded <strong>Best Design Award</strong>.</p>
+
+  <h3>FIRST LEGO League (UNEARTHED) – Innovation & Missions</h3>
+  <p>Contributed to robot design, mission strategy and the innovation project focused on archaeology. Used Pybricks to code mission runs and refine performance through testing.</p>
+  <ul>
+    <li>Researched real-world problems faced by archaeologists</li>
+    <li>Helped design and build the demo model</li>
+    <li>Developed and delivered parts of the team presentation</li>
+  </ul>
+
+  <h3>FLL Simulation System</h3>
+  <p>Built an interactive 3D simulation to support the FLL innovation project and help judges visualise the proposed solution.</p>
+  <p><a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="_blank">View FLL Simulation & Presentation Support</a></p>
+
+<h3>Scratch Game Showcase (Coding Projects)</h3>
+<p class="subtitle">Interactive games demonstrating computational thinking, real-time input handling, and game logic design.</p>
+
+<!-- GAME 1 -->
+<div class="card scratch-card" style="position:relative;">
+
+  <strong>🏀 Basketball Shooter</strong><br>
+  <a class="btn" href="https://scratch.mit.edu/projects/1214729121" target="_blank"
+     style="background:#ff8c00; font-weight:600;">▶ Play Now</a>
+
+  <p><em>A timed scoring challenge where players move across the court, line up shots, and score as many baskets as possible before the countdown ends.</em></p>
+
+  <ul>
+    <li>Real-time left/right movement and timing-based shooting</li>
+    <li>1000-second countdown with automatic game-end logic</li>
+    <li>Score tracking and consistent shot feedback</li>
+    <li>Simple UI and responsive controls</li>
+  </ul>
+
+  <!-- Skills Learned -->
+  <div style="margin-top:10px;">
+    <span class="skill-badge">Keyboard Input</span>
+    <span class="skill-badge">Timing Logic</span>
+    <span class="skill-badge">Scoring System</span>
+    <span class="skill-badge">UI Feedback</span>
+  </div>
+
+  <!-- Animated icon -->
+  <div style="position:absolute; top:12px; right:12px; font-size:28px; animation:bounce 1.6s infinite;">
+    🏀
+  </div>
 </div>
+
+<!-- GAME 2 -->
+<div class="card scratch-card" style="position:relative;">
+
+  <strong>⚡ AI Laser Dodge</strong><br>
+  <a class="btn" href="https://scratch.mit.edu/projects/1312993443" target="_blank"
+     style="background:#ff8c00; font-weight:600;">▶ Play Now</a>
+
+  <p><em>A fast-paced survival game where players dodge unpredictable laser beams that increase in speed and density over time.</em></p>
+
+  <ul>
+    <li>Full 4-direction movement with jump/dodge mechanics</li>
+    <li>Dynamic difficulty scaling as lasers speed up</li>
+    <li>Collision detection and hitbox logic</li>
+    <li>Reflex-based survival gameplay</li>
+  </ul>
+
+  <!-- Skills Learned -->
+  <div style="margin-top:10px;">
+    <span class="skill-badge">Collision Detection</span>
+    <span class="skill-badge">Difficulty Scaling</span>
+    <span class="skill-badge">Real-Time Input</span>
+    <span class="skill-badge">Reflex Mechanics</span>
+  </div>
+
+  <!-- Animated icon -->
+  <div style="position:absolute; top:12px; right:12px; font-size:28px; animation:pulse 1.4s infinite;">
+    ⚡
+  </div>
+</div>
+
+<!-- Reflection Paragraph -->
+<div style="margin-top:20px; background:#eef3ff; padding:16px 18px; border-radius:12px;">
+  <strong>Reflection:</strong>
+  <p>
+    Building these games helped me strengthen my computational thinking and understand how logic, timing, 
+    collision detection, and user feedback work together to create interactive experiences. 
+    Both projects were completed within a short period, showing my ability to learn quickly, 
+    debug efficiently, and apply programming concepts to real, playable games.
+  </p>
+</div>
+
+<!-- Icon Animations -->
+<style>
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity:1; }
+  50% { transform: scale(1.1); opacity:0.85; }
+  100% { transform: scale(1); opacity:1; }
+}
+</style>
+
+
+
+<!-- CERTIFICATES -->
+<section id="portfolio">
+  <h2>Certificates & Formal Recognition</h2>
+  <p class="subtitle">Formal recognition of my robotics, programming and STEM development.</p>
+  <div class="grid">
+    <div class="card">
+      <strong>FIRST LEGO League</strong><br>
+      Participation Certificate<br>
+      <a class="btn outline" href="FLLCertificate.pdf" target="_blank">View Certificate</a>
+    </div>
+    <div class="card">
+      <strong>FIRST LEGO League</strong><br>
+      Coach Letter<br>
+      <a class="btn outline" href="FLLLetter.pdf" target="_blank">View Letter</a>
+    </div>
+    <div class="card">
+      <strong>Robotics Advanced Certification</strong><br>
+      <a class="btn outline" href="Advanced.pdf" target="_blank">View Certificate</a>
+    </div>
+    <div class="card">
+      <strong>Robotics Intermediate Certification</strong><br>
+      <a class="btn outline" href="Intermediate.pdf" target="_blank">View Certificate</a>
+    </div>
+    <div class="card">
+      <strong>Robotics Beginner Certification</strong><br>
+      <a class="btn outline" href="Beginner.pdf" target="_blank">View Certificate</a>
+    </div>
+    <div class="card">
+      <strong>National Micro:bit Hackathon</strong><br>
+      Best Design Award<br>
+      <a class="btn outline" href="Hackathon.pdf" target="_blank">View Certificate</a>
+    </div>
+    <div class="card">
+      <strong>Scratch Enrichment Programme</strong><br>
+      Programming foundation<br>
+      <a class="btn outline" href="Scratch.pdf" target="_blank">View Certificate</a>
+    </div>
+  </div>
 </section>
 
-<section id="video">
-<h2>Scratch Projects Showcase</h2>
-<p>Notable Scratch Projects completed</p>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 1 - Backetball Game</a>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 2 - Laser Dodge Game</a>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 3 - Game</a>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 4 - Game</a>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 5 - Game</a>
-<a class="btn" href="https://paeterasp.github.io/FLL/index.html" target="blank">Scratch Project 6 - Game</a>
-</section>
-
-<section id="why">
-<h2>Why I Pursue Robotics</h2>
-<p>I am driven by the desire to solve real-world problems through engineering and innovation.</p>
-<p>I enjoy working in teams, iterating solutions, and continuously improving both technical and leadership skills.</p>
-<p>My goal is to contribute meaningfully to advanced robotics programmes and competitive engineering challenges.</p>
-</section>
-
+<!-- VALUE -->
 <section id="value">
-<h2>How I Will Add Value to Your School</h2>
-<ul>
-<li>Contribute actively to robotics teams and STEM programmes</li>
-<li>Bring initiative, discipline and strong teamwork</li>
-<li>Represent the school in competitions with commitment</li>
-<li>Support peers and share ideas positively</li>
-<li>Continue building innovative projects that solve real problems</li>
-</ul>
-<p>What began as curiosity has become a long-term passion that I am determined to pursue further.</p>
+  <h2>Why Robotics Matters to Me & How I Will Contribute</h2>
+
+  <h3>Why I Pursue Robotics</h3>
+  <p>I am driven by the desire to solve real-world problems using engineering, science and technology. I enjoy working in teams, iterating solutions and learning from every attempt.</p>
+  <p>Robotics allows me to combine creativity with discipline: designing, building, coding, testing and improving. It challenges me to think deeply, stay resilient and communicate clearly.</p>
+
+  <h3>How I Will Add Value to My Future School</h3>
+  <ul>
+    <li><strong>Strengthen Robotics & STEM Teams:</strong> Contribute actively to robotics clubs, STEM projects and competitions.</li>
+    <li><strong>Represent the School with Commitment:</strong> Compete with discipline, sportsmanship and perseverance.</li>
+    <li><strong>Support Peers:</strong> Share ideas, help teammates debug and encourage others to explore STEM.</li>
+    <li><strong>Lead by Example:</strong> Demonstrate responsibility, respect and a strong work ethic in both academics and co-curricular activities.</li>
+    <li><strong>Innovate for Impact:</strong> Continue building projects that address real-world challenges in areas like sustainability and science.</li>
+  </ul>
+  <p>What began as curiosity has become a long-term passion. I am ready to grow further in a school environment that values character, excellence and innovation—and to contribute my best to its robotics, STEM and science programmes.</p>
+  <p><em>Thank you for reviewing my portfolio.</em></p>
 </section>
 
-<div class="lightbox" id="lightbox" onclick="this.style.display='none'"><img id="lightbox-img"></div>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+  <img id="lightbox-img" alt="">
+</div>
 
-<footer>© 2026 Hormazd Vevaina | Robotics DSA Portfolio</footer>
+<!-- FOOTER -->
+<footer>
+  © 2026 Hormazd Vevaina | Robotics • STEM • Science DSA Portfolio
+</footer>
 
+<!-- SECTION REVEAL SCRIPT -->
 <script>
 const sections=document.querySelectorAll('section');
-window.addEventListener('scroll',()=>{
- sections.forEach(s=>{
-  if(s.getBoundingClientRect().top<window.innerHeight-80){s.classList.add('visible');}
- });
-});
+function onScroll(){
+  sections.forEach(s=>{
+    if(s.getBoundingClientRect().top<window.innerHeight-80){
+      s.classList.add('visible');
+    }
+  });
+}
+window.addEventListener('scroll',onScroll);
+onScroll();
 
 function openLightbox(src){
- document.getElementById('lightbox').style.display='flex';
- document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox').style.display='flex';
+  document.getElementById('lightbox-img').src=src;
 }
-// Particle animation
-const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-let particles = [];
-
-function resize(){
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
-window.addEventListener('resize', resize);
-resize();
-
-function createParticles(n=60){
-  particles = [];
-  for(let i=0;i<n;i++){
-    particles.push({
-      x: Math.random()*canvas.width,
-      y: Math.random()*canvas.height,
-      r: Math.random()*2+1,
-      vx: (Math.random()-0.5)*0.5,
-      vy: (Math.random()-0.5)*0.5
-    });
-  }
-}
-createParticles();
-
-function draw(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.fillStyle = 'rgba(255,255,255,0.6)';
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-  });
-}
-
-function update(){
-  particles.forEach(p=>{
-    p.x += p.vx;
-    p.y += p.vy;
-    if(p.x<0||p.x>canvas.width) p.vx*=-1;
-    if(p.y<0||p.y>canvas.height) p.vy*=-1;
-  });
-}
-
-function loop(){
-  update();
-  draw();
-  requestAnimationFrame(loop);
-}
-loop();
-
 </script>
-
-</body>
-</html>
